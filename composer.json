@@ -1,0 +1,26 @@
+{
+  "name": "minormous/metabolize",
+  "description": "The attribute processor for minormous.",
+  "authors": [
+    {
+      "name": "Marisa Clardy",
+      "email": "marisa@clardy.eu",
+      "homepage": "https://clardy.eu",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Minormous\\Metabolize\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Metabolize\\": "tests"
+    }
+  },
+  "require-dev": {
+    "vimeo/psalm": "^4.8",
+    "phpunit/phpunit": "^9.5"
+  }
+}
