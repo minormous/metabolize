@@ -21,6 +21,12 @@
   },
   "require-dev": {
     "vimeo/psalm": "^4.8",
-    "phpunit/phpunit": "^9.5"
+    "phpunit/phpunit": "^9.5",
+    "laminas/laminas-diactoros": "^2.6",
+    "symfony/var-dumper": "^5.3"
+  },
+  "require": {
+    "respect/validation": "^2.2",
+    "psr/http-message": "^1.0"
   }
 }
