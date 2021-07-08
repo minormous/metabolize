@@ -7,9 +7,9 @@ namespace Minormous\Metabolize\Api\Validation;
 use Minormous\Metabolize\Api\Attributes\Path;
 use Psr\Http\Message\ServerRequestInterface;
 use ReflectionClass;
-use Respect\Validation\Exceptions\AllOfException;
 use Respect\Validation\Exceptions\KeyException;
 use Respect\Validation\Exceptions\NestedValidationException;
+use Respect\Validation\Validatable;
 use Respect\Validation\Validator;
 use RuntimeException;
 
@@ -18,6 +18,10 @@ final class RequestValidator
     private Validator $pathValidator;
     private Validator $otherValidator;
 
+    /**
+     * @param Validatable[] $pathParameters
+     * @param Validatable[] $otherParameters
+     */
     public function __construct(
         array $pathParameters,
         array $otherParameters,

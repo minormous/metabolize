@@ -11,7 +11,7 @@ class Parameter
 {
     public function __construct(
         public string $description = '',
-        public mixed $sample = null,
+        public null|string|array|\JsonSerializable $sample = null,
     ) {
     }
 }

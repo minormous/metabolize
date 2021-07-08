@@ -14,7 +14,7 @@ final class EntityResponse
     public function __construct(public string $class)
     {
         if (!class_exists($class)) {
-            throw InvalidInputDefinitionException::invalidEntityResponse($class);
+            throw InvalidInputDefinitionException::invalidEntityResponse($this->class);
         }
     }
 }

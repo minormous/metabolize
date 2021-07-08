@@ -26,6 +26,7 @@ final class ValidationLoader
         $refClass = new ReflectionClass($inputDefinition);
         $properties = $refClass->getProperties();
 
+        /** @var Key[] $pathParameters */
         $pathParameters = [];
         $otherParameters = [];
 
@@ -57,10 +58,9 @@ final class ValidationLoader
         $allOf = new AllOf();
 
         foreach ($attributes as $attr) {
-            /** @var Validation $validation */
             $validation = $attr->newInstance();
             $rule = $validation->getRule();
-            if ($validation->getMessage() !== null) {
+            if ($validation->getMessage() !== '') {
                 $rule->setTemplate($validation->getMessage());
             }
             $allOf->addRule($rule);
@@ -89,7 +89,7 @@ final class ValidationLoader
                 /** @var Validation $validation */
                 $validation = $attr->newInstance();
                 $rule = $validation->getRule();
-                if ($validation->getMessage() !== null) {
+                if ($validation->getMessage() !== '') {
                     $rule->setTemplate($validation->getMessage());
                 }
                 $allOf->addRule($rule);
