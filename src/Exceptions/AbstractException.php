@@ -14,7 +14,7 @@ abstract class AbstractException extends Exception
         parent::__construct($message, $code, $previous);
     }
 
-    protected function withPrevious(Throwable $previous)
+    protected function withPrevious(Throwable $previous): static
     {
         return new static($this->message, $this->code, $previous);
     }

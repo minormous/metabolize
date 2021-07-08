@@ -6,6 +6,7 @@ namespace Minormous\Metabolize\Api\Attributes\Properties;
 
 use Attribute;
 use Respect\Validation\Rules\AbstractRule;
+use Respect\Validation\Validatable;
 
 #[Attribute(Attribute::TARGET_PROPERTY | Attribute::IS_REPEATABLE)]
 class Validation
@@ -14,31 +15,37 @@ class Validation
      * @param string $type
      *     Either a class-string for a class that is a Respect Rule; Or the name
      *     of an existing Respect validator.
-     * @param array<mixed> $additionalParams Any additional parameters to provide
+     * @param array<mixed> $parameters Any additional parameters to provide
      *     to the validator function.
-     * @param null|string $message The message to use for this validator. Uses validators
+     * @param string $message The message to use for this validator. Uses validators
      *     existing message if not defined.
      * @see https://respect-validation.readthedocs.io/en/latest/list-of-rules/
      */
     public function __construct(
         private string $type,
         private array $parameters = [],
-        private ?string $message = null,
+        private string $message = '',
     ) {
     }
 
-    public function getRule(): AbstractRule
+    /** @psalm-suppress MoreSpecificReturnType */
+    public function getRule(): Validatable
     {
-        if (class_exists($this->type)) {
+        $rule = $this->type;
+
+        if (!class_exists($this->type)) {
+            $rule = "Respect\\Validation\\Rules\\{$this->type}";
+        }
+
+        if (class_exists($rule)) {
+            /** @psalm-suppress LessSpecificReturnStatement */
             return new ($this->type)(...$this->parameters);
         }
 
-        $rule = "Respect\\Validation\\Rules\\{$this->type}";
-
-        return new $rule(...$this->parameters);
+        throw new \RuntimeException('Invalid validation class');
     }
 
-    public function getMessage(): ?string
+    public function getMessage(): string
     {
         return $this->message;
     }
