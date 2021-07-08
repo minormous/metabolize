@@ -39,7 +39,7 @@ class Validation
 
         if (class_exists($rule)) {
             /** @psalm-suppress LessSpecificReturnStatement */
-            return new ($this->type)(...$this->parameters);
+            return new ($rule)(...$this->parameters);
         }
 
         throw new \RuntimeException('Invalid validation class');
