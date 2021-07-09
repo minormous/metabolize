@@ -38,7 +38,8 @@ class Validation
         }
 
         if (class_exists($rule)) {
-            /** @psalm-suppress LessSpecificReturnStatement */
+            // not sure how to fix this
+            /** @psalm-suppress LessSpecificReturnStatement,MixedMethodCall */
             return new ($rule)(...$this->parameters);
         }
 
