@@ -52,6 +52,17 @@ final class Metadata
         return $this->propertyColumnMap[$propertyName];
     }
 
+    public function getColumnFromColumnName(string $columnName): ?ColumnMetadata
+    {
+        foreach ($this->propertyColumnMap as $columnMetadata) {
+            if ($columnMetadata->getName() === $columnName) {
+                return $columnMetadata;
+            }
+        }
+
+        return null;
+    }
+
     public function getPropertyColumnMap(): array
     {
         return $this->propertyColumnMap;
