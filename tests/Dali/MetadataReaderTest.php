@@ -6,6 +6,8 @@ use Minormous\Metabolize\Dali\MetadataReader;
 use Minormous\Metabolize\Exceptions\InvalidEntityException;
 use PHPUnit\Framework\TestCase;
 use Tests\Metabolize\Assets\Entities\CastRequired;
+use Tests\Metabolize\Assets\Entities\MissingSource;
+use Tests\Metabolize\Assets\Entities\MissingTable;
 use Tests\Metabolize\Assets\Entities\TestEntity;
 use Tests\Metabolize\Assets\Entities\TooManyIds;
 use Tests\Metabolize\Assets\Entities\TypeRequired;
@@ -47,6 +49,24 @@ class MetadataReaderTest extends TestCase
 
         $metadataReader = new MetadataReader();
         $metadataReader->read(CastRequired::class);
+    }
+
+    public function testMissingTableThrows()
+    {
+        $this->expectException(InvalidEntityException::class);
+        $this->expectExceptionMessage('No table defined for entity');
+
+        $metadataReader = new MetadataReader();
+        $metadataReader->read(MissingTable::class);
+    }
+
+    public function testMissingSourceThrows()
+    {
+        $this->expectException(InvalidEntityException::class);
+        $this->expectExceptionMessage('No source defined for entity');
+
+        $metadataReader = new MetadataReader();
+        $metadataReader->read(MissingSource::class);
     }
 
     public function testSuccessfulRead()
