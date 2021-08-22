@@ -9,6 +9,7 @@ final class ColumnMetadata
      */
     public function __construct(
         private string $name,
+        private string $property,
         private bool $identifier,
         private string $type,
         private string $castClass,
@@ -18,6 +19,11 @@ final class ColumnMetadata
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function getProperty(): string
+    {
+        return $this->property;
     }
 
     public function isIdentifier(): bool
