@@ -75,7 +75,7 @@ final class MetadataReader
     }
 
     /**
-     * @return array{0:string,1:bool,2:string}
+     * @return array{0:string,1:bool,2:class-string|''}
      */
     private function processColumn(ReflectionProperty $prop, bool &$identifierDefined): array
     {

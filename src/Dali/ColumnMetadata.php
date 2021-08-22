@@ -5,7 +5,7 @@ namespace Minormous\Metabolize\Dali;
 final class ColumnMetadata
 {
     /**
-     * @param class-string $castClass
+     * @param class-string|'' $castClass
      */
     public function __construct(
         private string $name,
@@ -37,7 +37,7 @@ final class ColumnMetadata
     }
 
     /**
-     * @return class-string
+     * @return class-string|''
      */
     public function getCastClass(): string
     {
