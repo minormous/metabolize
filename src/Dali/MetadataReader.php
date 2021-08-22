@@ -68,7 +68,7 @@ final class MetadataReader
             [$name, $isIdentifier, $castClass] = $this->processColumn($prop, $identifierDefined);
             $type = $this->processColumnType($prop, $castClass);
 
-            $map[$prop->getName()] = new ColumnMetadata($name, $isIdentifier, $type, $castClass);
+            $map[$prop->getName()] = new ColumnMetadata($name, $prop->getName(), $isIdentifier, $type, $castClass);
         }
 
         return $map;
