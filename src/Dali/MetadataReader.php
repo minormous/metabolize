@@ -23,12 +23,15 @@ final class MetadataReader
     ) {
     }
 
+    /**
+     * @param class-string $class
+     * @return Metadata
+     */
     public function read(string $class): Metadata
     {
         $table = null;
         $source = null;
         $repositoryClass = null;
-        $propertyColumnMap = null;
 
         $refClass = new ReflectionClass($class);
         $attributes = $refClass->getAttributes(BaseAttribute::class, ReflectionAttribute::IS_INSTANCEOF);
@@ -42,6 +45,14 @@ final class MetadataReader
             }
         }
         $propertyColumnMap = $this->getProperties($refClass);
+
+        if ($table === null) {
+            throw InvalidEntityException::tableUnknown($refClass);
+        } elseif ($source === null) {
+            throw InvalidEntityException::sourceUnknown($refClass);
+        } elseif ($repositoryClass === null) {
+            throw InvalidEntityException::repositoryUnknown($refClass);
+        }
 
         return new Metadata($class, $table, $source, $repositoryClass, $propertyColumnMap);
     }
@@ -63,6 +74,9 @@ final class MetadataReader
         return $map;
     }
 
+    /**
+     * @return array{0:string,1:bool,2:string}
+     */
     private function processColumn(ReflectionProperty $prop, bool &$identifierDefined): array
     {
         $name = $prop->getName();

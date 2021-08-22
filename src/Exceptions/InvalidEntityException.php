@@ -38,4 +38,25 @@ final class InvalidEntityException extends AbstractException
 
         return new static($message, 500);
     }
+
+    public static function tableUnknown(ReflectionClass $class): static
+    {
+        $message = sprintf('No table defined for entity [%s]', $class->getName());
+
+        return new static($message, 500);
+    }
+
+    public static function sourceUnknown(ReflectionClass $class): static
+    {
+        $message = sprintf('No source defined for entity [%s]', $class->getName());
+
+        return new static($message, 500);
+    }
+
+    public static function repositoryUnknown(ReflectionClass $class): static
+    {
+        $message = sprintf('No repository defined for entity [%s]', $class->getName());
+
+        return new static($message, 500);
+    }
 }
