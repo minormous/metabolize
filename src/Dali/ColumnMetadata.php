@@ -41,6 +41,6 @@ final class ColumnMetadata
      */
     public function getCastClass(): string
     {
-        return $this->getCastClass();
+        return $this->castClass;
     }
 }
