@@ -5,6 +5,7 @@ namespace Minormous\Metabolize\Dali;
 final class Metadata
 {
     /**
+     * @param class-string $class
      * @param array<string,ColumnMetadata> $propertyColumnMap
      */
     public function __construct(
@@ -16,6 +17,9 @@ final class Metadata
     ) {
     }
 
+    /**
+     * @return class-string
+     */
     public function getClass(): string
     {
         return $this->class;
