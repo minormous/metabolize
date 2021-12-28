@@ -7,6 +7,11 @@
       "email": "marisa@clardy.eu",
       "homepage": "https://clardy.eu",
       "role": "Developer"
+    },
+    {
+      "name": "Gordon Forsythe",
+      "email": "baohx2000@gmail.com",
+      "role": "Developer"
     }
   ],
   "autoload": {
