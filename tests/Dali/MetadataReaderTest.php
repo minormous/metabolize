@@ -74,8 +74,9 @@ class MetadataReaderTest extends TestCase
         $metadataReader = new MetadataReader();
         $result = $metadataReader->read(TestEntity::class);
         $this->assertCount(2, $result->getPropertyColumnMap());
-        $idColumn = $result->getIdColumn();
-        $this->assertEquals('id', $idColumn->getName());
-        $this->assertEquals('int', $idColumn->getType());
+        $idColumns = $result->getIdColumns();
+        $this->assertCount(1, $idColumns);
+        $this->assertEquals('id', $idColumns['id']->getName());
+        $this->assertEquals('int', $idColumns['id']->getType());
     }
 }
