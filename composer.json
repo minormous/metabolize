@@ -28,5 +28,10 @@
   "require": {
     "respect/validation": "^2.2",
     "psr/http-message": "^1.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/package-versions-deprecated": true
+    }
   }
 }
