@@ -41,7 +41,7 @@ final class Metadata
     }
 
     /**
-     * @return array{ColumnMetadata}
+     * @return array<string, ColumnMetadata>
      */
     public function getIdColumns(): array
     {
