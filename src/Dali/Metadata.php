@@ -40,15 +40,15 @@ final class Metadata
         return $this->repositoryClass;
     }
 
-    public function getIdColumn(): ?ColumnMetadata
+    /**
+     * @return array{ColumnMetadata}
+     */
+    public function getIdColumns(): array
     {
-        foreach ($this->propertyColumnMap as $columnMetadata) {
-            if ($columnMetadata->isIdentifier()) {
-                return $columnMetadata;
-            }
-        }
-
-        return null;
+        return array_filter(
+            $this->propertyColumnMap,
+            fn (ColumnMetadata $meta) => $meta->isIdentifier()
+        );
     }
 
     public function getColumn(string $propertyName): ColumnMetadata
