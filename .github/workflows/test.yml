@@ -1,5 +1,6 @@
 name: Test
 on:
+  workflow_dispatch:
   pull_request:
     types:
       - opened
@@ -16,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.1']
+        php: ['8.1','8.2']
     steps:
       - uses: actions/checkout@v2
       - name: Setup PHP
@@ -39,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.1']
+        php: ['8.1','8.2']
     steps:
       - uses: actions/checkout@v2
       - name: Setup PHP
